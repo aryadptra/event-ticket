@@ -16,7 +16,7 @@
     }
 
     body{
-        @apply relative text-white font-poppins bg-dark-indigo;
+        @apply relative font-poppins bg-dark-indigo;
     }
 
     input[type="number"]::-webkit-outer-spin-button,

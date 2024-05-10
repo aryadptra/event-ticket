@@ -41,7 +41,7 @@ const Home = ({ events, categories }) => {
                 <section id="eventSection" className="container relative max-w-screen-xl py-10">
                     {/* Section Header */}
                     <div className="flex justify-between items-center gap-4 mb-[50px]">
-                        <h5 className="text-[24px] md:text-[38px] font-bold">
+                        <h5 className="text-[24px] md:text-[38px] font-bold text-white">
                             <span className="text-butter-yellow">Big</span> Events, <br />
                             Coming <span className="text-butter-yellow">Soon</span>
                         </h5>
@@ -51,7 +51,7 @@ const Home = ({ events, categories }) => {
                         </a>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px] text-white">
                         {events.map((event, index) => (
                             <div key={index} className="event-card">
                                 {/* Render your event card component here */}
@@ -63,7 +63,7 @@ const Home = ({ events, categories }) => {
                     </div>
                 </section>
 
-                <section id="categoriesSection" className="relative pb-[100px] overflow-hidden">
+                <section id="categoriesSection" className="relative pb-[100px] overflow-hidden text-white">
                     <div className="container relative max-w-screen-xl py-10">
                         {/* Section Header */}
                         <div className="flex justify-between items-center gap-4 mb-[50px]">
