@@ -1,0 +1,26 @@
+@layer base {
+    /* Poppins */
+    /* custom-base-styles.css */
+    .font-poppins {
+        font-family: 'Poppins', sans-serif;
+    }
+
+
+    .flex::before,
+    .flex::after {
+        display: none !important;
+    }
+
+    img{
+        @apply object-cover;
+    }
+
+    body{
+        @apply relative text-white font-poppins bg-dark-indigo;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        @apply appearance-none
+    }
+}
