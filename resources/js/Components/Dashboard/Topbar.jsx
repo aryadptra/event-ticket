@@ -15,7 +15,7 @@ export default function Topbar({ toggleSidebar }) {
                 </div>
             </div>
             <div>
-                <Link href={route('logout')} method="post" className='bg-dark-indigo text-white px-6 py-3 rounded-md' as="button">Add Event</Link>
+                <Link href={route('admin.events.create')} className='bg-dark-indigo text-white px-6 py-3 rounded-md' >Add Event</Link>
             </div>
         </div>
     )

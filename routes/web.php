@@ -18,7 +18,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     Route::get('dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard/Index');
     })->name('dashboard');
 
     Route::resource('events', EventController::class);

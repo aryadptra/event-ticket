@@ -6,7 +6,7 @@ use App\Models\Event;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\Admin\EventRequest;
+use App\Http\Requests\EventRequest;
 use App\Models\Category;
 use App\Models\TransactionDetail;
 use Illuminate\Contracts\View\View;
@@ -21,23 +21,23 @@ class EventController extends Controller
     {
         $events = Event::paginate(10);
 
-        return Inertia::render('Dashboard/Events', compact('events'));
+        return Inertia::render('Dashboard/Event/Index', compact('events'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create()
     {
         $categories = Category::all();
 
-        return view('admin.events.form', compact('categories'));
+        return Inertia::render('Dashboard/Event/Create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(EventRequest $request): RedirectResponse
+    public function store(EventRequest $request)
     {
         // Create slug
         $request->merge([
