@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -22,6 +23,7 @@ Route::middleware(['auth'])->prefix('admin')->as('admin.')->group(function () {
     })->name('dashboard');
 
     Route::resource('events', EventController::class);
+    Route::resource('events.tickets', TicketController::class);
 });
 
 require __DIR__ . '/auth.php';

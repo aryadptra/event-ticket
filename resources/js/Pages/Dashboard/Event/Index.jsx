@@ -36,9 +36,9 @@ const Event = ({ events }) => {
                                             <td className="px-6 py-4">{new Date(event.start_time).toLocaleDateString()} {new Date(event.start_time).toTimeString().slice(0, 5)}</td>
                                             <td className="px-6 py-4">{event.duration} jam</td>
                                             <td className="px-6 py-4 space-y-1 text-center">
-                                                {/* <Link href={route('admin.events.tickets.index', event.id)} className="block px-2 py-1 text-white bg-green-500 rounded">
-                                                Tiket
-                                            </Link> */}
+                                                <Link href={route('admin.events.tickets.index', event.id)} className="block px-2 py-1 text-white bg-green-500 rounded">
+                                                    Tiket
+                                                </Link>
                                                 {/* <Link href={route('admin.events.transactions.index', event.id)} className="block px-2 py-1 text-white bg-yellow-500 rounded">
                                                 Transaksi
                                             </Link> */}
