@@ -118,6 +118,7 @@ class EventController extends Controller
         //     ]);
         // }
 
+
         // Update event
         Event::find($id)->update($request->except('files'));
 

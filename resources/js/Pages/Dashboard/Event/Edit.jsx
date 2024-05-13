@@ -28,6 +28,7 @@ const Edit = ({ event, categories, errors }) => {
         }));
     };
 
+
     // const handleFilesChange = e => {
     //     const files = Array.from(e.target.files);
     //     setFormData(prevState => ({
@@ -51,16 +52,18 @@ const Edit = ({ event, categories, errors }) => {
         formDataToSend.append('type', formData.type);
         formDataToSend.append('is_popular', formData.is_popular ? 1 : 0);
 
+        // Jangan lupa tambahkan files ke formDataToSend jika diperlukan
         // formData.files.forEach((file, index) => {
         //     formDataToSend.append(`files[${index}]`, file);
         // });
 
+        // Karena is_popular disetel berdasarkan event.is_popular, Anda harus menetapkan nilainya secara langsung
+        // berdasarkan nilai kotak centang
+        formDataToSend.set('is_popular', e.target.checked ? 1 : 0);
 
         router.put(route('admin.events.update', event.id), formData, {
             onSuccess: () => router.get(route('admin.events.index'))
         });
-
-        console.log(event.id)
     };
 
     return (
