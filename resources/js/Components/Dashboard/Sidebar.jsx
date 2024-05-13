@@ -5,8 +5,8 @@ import { HiOutlineHome, HiOutlineLogout, HiOutlineTicket } from "react-icons/hi"
 
 export default function Sidebar({ isOpen, toggleSidebar }) {
     return (
-        <div className={`lg:block lg:w-[18%] ${isOpen ? 'lg:block' : 'lg:hidden'}`}>
-            <div className="min-h-screen pb-12 bg-dark-indigo">
+        <div className={`lg:block lg:w-[18%] sticky ${isOpen ? 'lg:block' : 'lg:hidden'}`}>
+            <div className="h-full min-h-screen pb-12 bg-dark-indigo">
                 <div className="py-4 text-center">
                     <div className="flex justify-center">
                         <div className="px-6 py-2">

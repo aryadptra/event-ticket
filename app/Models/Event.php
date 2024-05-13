@@ -35,7 +35,7 @@ class Event extends Model
     /**
      * Get the tickets for the event.
      */
-    public function tickets(): HasMany
+    public function tickets()
     {
         return $this->hasMany(Ticket::class);
     }
