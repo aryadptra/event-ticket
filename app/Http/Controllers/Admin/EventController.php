@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\EventUpdateRequest;
 use App\Models\Event;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::paginate(10);
+        $events = Event::with('category')->paginate(10);
 
         return Inertia::render('Dashboard/Event/Index', compact('events'));
     }
@@ -80,18 +81,19 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event): View
+    public function edit(Event $event)
     {
         $categories = Category::all();
 
-        return view('admin.events.form', compact('event', 'categories'));
+        return Inertia::render('Dashboard/Event/Edit', compact('event', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EventRequest $request, string $id): RedirectResponse
+    public function update(EventUpdateRequest $request, string $id)
     {
+
         // Create slug
         $request->merge([
             'slug' => Str::slug($request->name),
@@ -102,18 +104,19 @@ class EventController extends Controller
             'is_popular' => $request->has('is_popular') ? true : false,
         ]);
 
+
         // Upload multiple photos if exist
-        if ($request->hasFile('files')) {
-            $photos = [];
+        // if ($request->hasFile('files')) {
+        //     $photos = [];
 
-            foreach ($request->file('files') as $file) {
-                $photos[] = $file->store('events', 'public');
-            }
+        //     foreach ($request->file('files') as $file) {
+        //         $photos[] = $file->store('events', 'public');
+        //     }
 
-            $request->merge([
-                'photos' => $photos,
-            ]);
-        }
+        //     $request->merge([
+        //         'photos' => $photos,
+        //     ]);
+        // }
 
         // Update event
         Event::find($id)->update($request->except('files'));
