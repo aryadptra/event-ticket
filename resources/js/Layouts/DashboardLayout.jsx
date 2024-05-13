@@ -1,9 +1,9 @@
 import Sidebar from '@/Components/Dashboard/Sidebar'
 import Topbar from '@/Components/Dashboard/Topbar'
-import { Link } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import React, { useState } from 'react'
 
-export default function DashboardLayout({ children }) {
+export default function DashboardLayout({ children, title }) {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
     const toggleSidebar = () => {
@@ -11,6 +11,7 @@ export default function DashboardLayout({ children }) {
     };
     return (
         <>
+            <Head title={title} />
             <div className="min-h-screen bg-gray-100">
                 <div className="flex flex-row">
                     {/* <Sidebar /> */}

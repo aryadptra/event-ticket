@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import DashboardLayout from '@/Layouts/DashboardLayout';
 import { Head, router, usePage } from '@inertiajs/react';
+import InputError from '@/Components/InputError';
 
 const Create = ({ event, categories, errors }) => {
 
@@ -57,21 +58,10 @@ const Create = ({ event, categories, errors }) => {
         router.post(route('admin.events.store'), formDataToSend, {
             onSuccess: () => router.get(route('admin.events.index'))
         });
-        console.log(formDataToSend);
-        console.log(errors);
     };
 
     return (
         <>
-            <Head title="Create Event" />
-            {errors.length > 0 ? (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                    <strong className="font-bold">Whoops!</strong>
-                    <ul>
-                        {errors.map((error, index) => <li key={index}>{error}</li>)}
-                    </ul>
-                </div>
-            ) : null}
             <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="px-4 py-5 bg-white sm:p-6">
                     <form
@@ -88,6 +78,7 @@ const Create = ({ event, categories, errors }) => {
                                 value={formData.name}
                                 onChange={handleChange}
                             />
+                            <InputError message={errors.name} />
                         </div>
                         {/* Categories */}
                         <div className="mb-6">
@@ -107,6 +98,8 @@ const Create = ({ event, categories, errors }) => {
                                     </option>
                                 ))}
                             </select>
+                            <InputError message={errors.category_id} />
+
                         </div>
                         <div className="mb-6">
                             <label htmlFor="headline" className="block mb-2 text-sm">
@@ -119,6 +112,8 @@ const Create = ({ event, categories, errors }) => {
                                 value={formData.headline}
                                 onChange={handleChange}
                             />
+                            <InputError message={errors.headline} />
+
                         </div>
                         <div className="mb-6">
                             <label htmlFor="description" className="block mb-2 text-sm">
@@ -130,22 +125,26 @@ const Create = ({ event, categories, errors }) => {
                                 value={formData.description}
                                 onChange={handleChange}
                             ></textarea>
+                            <InputError message={errors.description} />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="start_time" className="block mb-2 text-sm">Start Date</label>
                             <input type="datetime-local" name="start_time"
                                 className="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5"
                                 value={formData.start_time} onChange={handleChange} />
+                            <InputError message={errors.start_time} />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="location" className="block mb-2 text-sm">Location</label>
                             <input type="text" name="location" className="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5"
                                 value={formData.location} onChange={handleChange} />
+                            <InputError message={errors.location} />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="duration" className="block mb-2 text-sm">Duration (in hours)</label>
                             <input type="number" name="duration" className="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5"
                                 value={formData.duration} onChange={handleChange} />
+                            <InputError message={errors.duration} />
                         </div>
                         {/* Type (online/offline) */}
                         <div className="mb-6">
@@ -158,11 +157,12 @@ const Create = ({ event, categories, errors }) => {
                                     Online
                                 </option>
                             </select>
+                            <InputError message={errors.type} />
                         </div>
                         <div className="mb-6">
                             <label htmlFor="files" className="block mb-2 text-sm">Photo</label>
                             <input type="file" name="files[]" onChange={handleFilesChange} multiple className="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" />
-
+                            <InputError message={errors.files} />
                         </div>
                         {/* Is Popular */}
                         <div className="mb-6">
@@ -177,8 +177,8 @@ const Create = ({ event, categories, errors }) => {
                                 onChange={handleChange}
                                 className="bg-gray-50 border border-gray-300 rounded-lg p-2.5"
                             />
+                            <InputError message={errors.is_popular} />
                         </div>
-
                         <button
                             type="submit"
                             className="text-white bg-dark-indigo rounded-lg w-full sm:w-auto px-5 py-2.5 text-center"
