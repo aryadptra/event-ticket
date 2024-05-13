@@ -1,6 +1,9 @@
+import CardCategory from '@/Components/Frontend/CardCategory'
+import CardEvent from '@/Components/Frontend/CardEvent'
 import AppLayout from '@/Layouts/AppLayout'
 
 const Home = ({ events, categories }) => {
+    console.log(categories)
     return (
         <>
             <div>
@@ -53,12 +56,16 @@ const Home = ({ events, categories }) => {
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px] text-white">
                         {events.map((event, index) => (
-                            <div key={index} className="event-card">
-                                {/* Render your event card component here */}
-                                <h3>{event.name}</h3>
-                                <p>{event.start_time}</p>
-                                {/* Add more event details */}
-                            </div>
+                            <CardEvent
+                                key={index}
+                                cover={event.photos[0]}
+                                name={event.name}
+                                category={event.category.name}
+                                date={event.start_time}
+                                price={event.start_from}
+                                isPopular={event.is_popular}
+                                description={event.headline} // Sesuaikan dengan path detail di aplikasi Anda
+                            />
                         ))}
                     </div>
                 </section>
@@ -79,12 +86,13 @@ const Home = ({ events, categories }) => {
 
                         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-[30px] relative">
                             {categories.map((category, index) => (
-                                <div key={index} className="category-card">
-                                    {/* Render your category card component here */}
-                                    <h3>{category.name}</h3>
-                                    <p>{category.events_count}</p>
-                                    {/* Add more category details */}
-                                </div>
+                                <CardCategory
+                                    key={index}
+                                    icon={category.icon}
+                                    name={category.name}
+                                    totalEvents={category.events_count}
+                                    route={`/categories/${category.slug}`}
+                                />
                             ))}
                         </div>
                     </div>
